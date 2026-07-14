@@ -1,6 +1,9 @@
-import { CalendarClock } from "lucide-react";
+import { CalendarClock, ExternalLink } from "lucide-react";
+import { EVENTS, type EventStatus } from "./data/events";
 
 export function Events() {
+  const hasEvents = EVENTS.length > 0;
+
   return (
     <section id="esemenyek" className="relative py-24 md:py-32 overflow-hidden">
       <div className="pointer-events-none absolute top-0 left-1/4 h-[400px] w-[400px] rounded-full bg-primary/10 blur-[100px]" />
@@ -18,30 +21,63 @@ export function Events() {
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {/* Placeholder cards */}
-          {["TikTok élő adás", "Közösségi játék", "Belső verseny"].map((type) => (
-            <article
-              key={type}
-              className="scorpion-border rounded-xl p-6 bg-gradient-card flex flex-col"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <span className="badge-role">{type}</span>
-                <span className="badge-role !bg-muted/60 !border-border !text-muted-foreground">
-                  Hamarosan
-                </span>
-              </div>
-              <div className="flex-1 flex flex-col items-center justify-center text-center py-8 border border-dashed border-border rounded-lg">
-                <CalendarClock className="h-8 w-8 text-primary/60 mb-3" />
-                <p className="font-display text-sm tracking-[0.15em] uppercase text-muted-foreground">
-                  Új Scorpion események hamarosan
-                </p>
-              </div>
-              <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
-                <span>Dátum: —</span>
-                <span>Időpont: —</span>
-              </div>
-            </article>
-          ))}
+          {hasEvents
+            ? EVENTS.map((e, i) => (
+                <article
+                  key={`${e.title}-${i}`}
+                  className="scorpion-border rounded-xl p-6 bg-gradient-card flex flex-col"
+                >
+                  <div className="flex items-center justify-between mb-4 gap-2">
+                    <span className="badge-role truncate">{e.type}</span>
+                    <StatusBadge status={e.status} />
+                  </div>
+                  <h3 className="font-display font-bold text-lg text-foreground break-words leading-tight">
+                    {e.title}
+                  </h3>
+                  {e.description && (
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                      {e.description}
+                    </p>
+                  )}
+                  <div className="mt-auto pt-4 flex items-center justify-between text-xs text-muted-foreground gap-3 flex-wrap">
+                    <span>Dátum: {e.date ?? "—"}</span>
+                    <span>Időpont: {e.time ?? "—"}</span>
+                  </div>
+                  {e.link && (
+                    <a
+                      href={e.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center gap-1.5 text-xs font-display tracking-[0.15em] uppercase text-primary hover:text-ember transition-colors"
+                    >
+                      Részletek <ExternalLink className="h-3 w-3" />
+                    </a>
+                  )}
+                </article>
+              ))
+            : ["TikTok élő adás", "Közösségi játék", "Belső verseny"].map((type) => (
+                <article
+                  key={type}
+                  className="scorpion-border rounded-xl p-6 bg-gradient-card flex flex-col"
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="badge-role">{type}</span>
+                    <span className="badge-role !bg-muted/60 !border-border !text-muted-foreground">
+                      Hamarosan
+                    </span>
+                  </div>
+                  <div className="flex-1 flex flex-col items-center justify-center text-center py-8 border border-dashed border-border rounded-lg">
+                    <CalendarClock className="h-8 w-8 text-primary/60 mb-3" />
+                    <p className="font-display text-sm tracking-[0.15em] uppercase text-muted-foreground">
+                      Új Scorpion események hamarosan
+                    </p>
+                  </div>
+                  <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
+                    <span>Dátum: —</span>
+                    <span>Időpont: —</span>
+                  </div>
+                </article>
+              ))}
         </div>
 
         <div className="mt-8 text-center">
@@ -51,5 +87,35 @@ export function Events() {
         </div>
       </div>
     </section>
+  );
+}
+
+function StatusBadge({ status }: { status: EventStatus }) {
+  if (status === "Élő") {
+    return (
+      <span className="badge-role !bg-primary/25 !border-primary/70 !text-foreground">
+        <span className="live-dot" aria-hidden />
+        Élő
+      </span>
+    );
+  }
+  if (status === "Jelentkezés nyitva") {
+    return (
+      <span className="badge-role !bg-ember/15 !border-ember/50 !text-ember">
+        Jelentkezés nyitva
+      </span>
+    );
+  }
+  if (status === "Lezárult") {
+    return (
+      <span className="badge-role !bg-muted/60 !border-border !text-muted-foreground">
+        Lezárult
+      </span>
+    );
+  }
+  return (
+    <span className="badge-role !bg-muted/60 !border-border !text-muted-foreground">
+      Hamarosan
+    </span>
   );
 }

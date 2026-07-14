@@ -1,4 +1,8 @@
 import { Play, Music, Video } from "lucide-react";
+import { AudioPlayer } from "./AudioPlayer";
+
+/** Set to the MP3 URL once the official Scorpion track is available. */
+const SCORPION_TRACK_SRC: string | undefined = undefined;
 
 export function Media() {
   return (
@@ -72,26 +76,7 @@ export function Media() {
                 A saját Scorpion közösségi zene hamarosan itt lesz elérhető.
               </p>
 
-              {/* Static player UI */}
-              <div className="mt-5 flex items-center gap-3 p-3 rounded-lg border border-border bg-background/60">
-                <button
-                  type="button"
-                  disabled
-                  className="h-11 w-11 rounded-full bg-primary/20 border border-primary/50 grid place-items-center text-primary/70 cursor-not-allowed"
-                  aria-label="Lejátszás"
-                >
-                  <Play className="h-5 w-5 ml-0.5" />
-                </button>
-                <div className="flex-1 min-w-0">
-                  <div className="h-1.5 rounded-full bg-muted overflow-hidden">
-                    <div className="h-full w-0 bg-gradient-red" />
-                  </div>
-                  <div className="flex items-center justify-between mt-2 text-[0.7rem] font-display tracking-[0.2em] uppercase text-muted-foreground">
-                    <span>Hamarosan</span>
-                    <span>--:--</span>
-                  </div>
-                </div>
-              </div>
+              <AudioPlayer src={SCORPION_TRACK_SRC} title="Scorpion – Hivatalos zene" />
             </div>
           </div>
         </div>
