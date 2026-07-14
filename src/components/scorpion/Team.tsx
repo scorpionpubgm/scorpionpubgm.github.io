@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Crown, Shield, Star, GraduationCap, User } from "lucide-react";
 import { ScorpionMark } from "./SocialIcons";
 
@@ -5,6 +6,8 @@ type Player = {
   name: string;
   role: string;
   badge?: string;
+  /** Optional avatar URL. When absent, the role icon is used. */
+  avatar?: string;
 };
 
 const LEADER: Player = { name: "〆SCP×Zs99×", role: "Tulajdonos • Vezető" };
@@ -49,10 +52,8 @@ export function Team() {
           </p>
         </header>
 
-        {/* LEADER */}
         <LeaderCard player={LEADER} />
 
-        {/* LEADERSHIP */}
         <RoleGroup title="Vezetőség" subtitle="A közösség irányítói">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {LEADERSHIP.map((p) => (
@@ -61,7 +62,6 @@ export function Team() {
           </div>
         </RoleGroup>
 
-        {/* ADMINS */}
         <RoleGroup title="Adminok" subtitle="Moderáció és mentorálás">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {ADMINS.map((p) => (
@@ -70,7 +70,6 @@ export function Team() {
           </div>
         </RoleGroup>
 
-        {/* MEMBERS */}
         <RoleGroup title="Tagok" subtitle="A Scorpion aktív játékosai">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {MEMBERS.map((p) => (
@@ -95,7 +94,7 @@ function RoleGroup({
   return (
     <div className="mt-16">
       <div className="flex items-end justify-between gap-4 mb-6 border-b border-primary/20 pb-4">
-        <div>
+        <div className="min-w-0">
           <h3 className="font-display font-bold text-2xl tracking-[0.2em] uppercase text-foreground">
             {title}
           </h3>
@@ -108,6 +107,43 @@ function RoleGroup({
   );
 }
 
+/** Circular avatar with fallback icon and role-based glow ring */
+function Avatar({
+  src,
+  alt,
+  size,
+  glowClass,
+  fallback,
+}: {
+  src?: string;
+  alt: string;
+  size: string;
+  glowClass: string;
+  fallback: React.ReactNode;
+}) {
+  const [failed, setFailed] = useState(false);
+  const showImg = !!src && !failed;
+  return (
+    <div
+      className={`relative shrink-0 ${size} rounded-full grid place-items-center overflow-hidden border ${glowClass}`}
+    >
+      {showImg ? (
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          onError={() => setFailed(true)}
+          className="h-full w-full object-cover"
+          draggable={false}
+        />
+      ) : (
+        fallback
+      )}
+    </div>
+  );
+}
+
 function LeaderCard({ player }: { player: Player }) {
   return (
     <article className="relative group">
@@ -116,15 +152,20 @@ function LeaderCard({ player }: { player: Player }) {
         className="relative rounded-2xl overflow-hidden scorpion-border grain-overlay shadow-leader"
         style={{ background: "var(--gradient-leader)" }}
       >
-        {/* Big watermark scorpion */}
         <ScorpionMark className="pointer-events-none absolute -right-10 -top-10 h-[280px] w-[280px] opacity-[0.08]" />
 
         <div className="relative p-6 sm:p-10 md:p-12 flex flex-col md:flex-row items-center md:items-end gap-6 md:gap-10">
           <div className="relative shrink-0">
             <div className="absolute inset-0 -m-2 rounded-full bg-primary/40 blur-2xl animate-pulse-glow" />
-            <div className="relative h-32 w-32 md:h-40 md:w-40 rounded-full border-2 border-primary/70 bg-gradient-to-br from-primary/30 via-background to-background grid place-items-center shadow-glow">
-              <Crown className="h-14 w-14 md:h-16 md:w-16 text-primary drop-shadow-[0_0_20px_oklch(0.62_0.24_25/0.8)]" />
-            </div>
+            <Avatar
+              src={player.avatar}
+              alt={player.name}
+              size="h-32 w-32 md:h-40 md:w-40"
+              glowClass="border-2 border-primary/70 bg-gradient-to-br from-primary/30 via-background to-background shadow-glow"
+              fallback={
+                <Crown className="h-14 w-14 md:h-16 md:w-16 text-primary drop-shadow-[0_0_20px_oklch(0.62_0.24_25/0.8)]" />
+              }
+            />
           </div>
 
           <div className="flex-1 min-w-0 text-center md:text-left">
@@ -160,21 +201,21 @@ function PlayerCard({
   const tierConfig = {
     leadership: {
       icon: Shield,
-      accent: "border-primary/50",
       glow: "group-hover:shadow-glow-sm",
-      iconBg: "bg-primary/15 border-primary/50 text-primary",
+      iconWrap: "border-primary/60 bg-primary/15 text-primary shadow-[0_0_18px_oklch(0.62_0.24_25/0.35)]",
+      iconInner: "bg-primary/15 border-primary/50 text-primary",
     },
     admin: {
       icon: Shield,
-      accent: "border-primary/30",
       glow: "group-hover:shadow-glow-sm",
-      iconBg: "bg-ember/10 border-ember/40 text-ember",
+      iconWrap: "border-ember/50 bg-ember/10 text-ember shadow-[0_0_14px_oklch(0.72_0.20_35/0.25)]",
+      iconInner: "bg-ember/10 border-ember/40 text-ember",
     },
     member: {
       icon: User,
-      accent: "border-border",
       glow: "group-hover:shadow-glow-sm",
-      iconBg: "bg-muted/60 border-border text-foreground/80",
+      iconWrap: "border-border bg-muted/60 text-foreground/80",
+      iconInner: "bg-muted/60 border-border text-foreground/80",
     },
   }[tier];
   const Icon = tierConfig.icon;
@@ -183,15 +224,16 @@ function PlayerCard({
     <article
       className={`group relative scorpion-border rounded-xl p-5 overflow-hidden transition-all duration-300 hover:-translate-y-1 ${tierConfig.glow}`}
     >
-      {/* subtle hover glow */}
       <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-primary/10 via-transparent to-transparent" />
 
       <div className="relative flex items-center gap-4">
-        <div
-          className={`relative shrink-0 h-14 w-14 rounded-lg grid place-items-center border ${tierConfig.iconBg}`}
-        >
-          <Icon className="h-6 w-6" />
-        </div>
+        <Avatar
+          src={player.avatar}
+          alt={player.name}
+          size="h-14 w-14"
+          glowClass={tierConfig.iconWrap}
+          fallback={<Icon className="h-6 w-6" />}
+        />
 
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
@@ -208,7 +250,6 @@ function PlayerCard({
         </div>
       </div>
 
-      {/* corner accent */}
       <div className="pointer-events-none absolute top-0 right-0 h-16 w-16">
         <div className="absolute top-0 right-0 h-px w-10 bg-primary/60" />
         <div className="absolute top-0 right-0 h-10 w-px bg-primary/60" />
