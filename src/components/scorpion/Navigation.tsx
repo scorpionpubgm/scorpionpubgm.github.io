@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { ScorpionMark } from "./SocialIcons";
+import { Logo } from "./Logo";
+
+/**
+ * If a real Scorpion PUGBM logo file becomes available, set its URL here
+ * (transparent PNG/WebP/SVG). Until then the built-in ScorpionMark is used.
+ */
+const SCORPION_LOGO_SRC: string | undefined = undefined;
 
 const NAV_ITEMS = [
   { label: "Főoldal", href: "#hero" },
