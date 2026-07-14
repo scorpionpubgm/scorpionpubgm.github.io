@@ -46,12 +46,14 @@ export function Navigation() {
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 md:h-20 items-center justify-between gap-4">
-          {/* Logo placeholder */}
+          {/* Logo */}
           <a href="#hero" className="flex items-center gap-2.5 shrink-0 group">
-            <div className="relative h-10 w-10 rounded-md scorpion-border grid place-items-center overflow-hidden">
-              <ScorpionMark className="h-7 w-7 transition-transform group-hover:scale-110" />
-            </div>
-            <div className="hidden sm:flex flex-col leading-none">
+            <Logo
+              src={SCORPION_LOGO_SRC}
+              rounded="md"
+              className="h-10 w-10 scorpion-border bg-background/40 transition-transform group-hover:scale-105"
+            />
+            <div className="hidden sm:flex flex-col leading-none min-w-0">
               <span className="font-display font-bold text-sm tracking-[0.2em] text-foreground">SCORPION</span>
               <span className="font-display text-[0.65rem] tracking-[0.3em] text-primary">PUGBM KÖZÖSSÉG</span>
             </div>
