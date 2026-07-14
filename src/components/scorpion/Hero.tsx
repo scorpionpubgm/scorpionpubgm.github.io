@@ -106,10 +106,8 @@ export function Hero() {
         <div className="flex flex-col items-center text-center gap-8 md:gap-10">
           {/* Logo placeholder */}
           <div className="relative">
-            <div className="absolute inset-0 -m-4 rounded-full bg-primary/30 blur-2xl animate-pulse-glow" />
-            <div className="relative h-28 w-28 md:h-36 md:w-36 rounded-full scorpion-border grid place-items-center bg-background/60 backdrop-blur-sm shadow-elevated">
-              <ScorpionMark className="h-20 w-20 md:h-24 md:w-24" />
-            </div>
+         <img src="/logo.jpg" alt="Scorpion PUBG M" className="w-32 h-32 md:w-40 md:h-40 object-contain rounded-full border-2 border-red-600 shadow-lg shadow-red-900/50 mx-auto mb-4" />
+            
           </div>
 
           <div className="eyebrow">Magyar PUBG Mobile közösség</div>
