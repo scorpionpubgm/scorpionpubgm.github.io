@@ -24,7 +24,7 @@ export function Footer() {
           </div>
 
           <h3 className="font-display font-extrabold text-2xl sm:text-3xl tracking-[0.2em] uppercase text-foreground">
-            Scorpion PUGBM <span className="text-gradient-red">Közösség</span>
+            Scorpion PUBGM <span className="text-gradient-red">Közösség</span>
           </h3>
           <p className="font-display text-base text-muted-foreground tracking-wide">
             „Egy közösség. Egy csapat. Egy Scorpion.”
@@ -48,7 +48,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} Scorpion PUGBM Közösség — Minden jog fenntartva.</p>
+          <p>© {new Date().getFullYear()} Scorpion PUBGM Közösség — Minden jog fenntartva.</p>
           <p className="font-display tracking-[0.2em] uppercase">Magyar PUBG Mobile közösség</p>
         </div>
       </div>

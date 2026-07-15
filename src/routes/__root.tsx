@@ -71,14 +71,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Scorpion PUGBM Közösség — Magyar PUBG Mobile csapat" },
+      { title: "Scorpion PUBGM Közösség — Magyar PUBG Mobile csapat" },
       {
         name: "description",
         content:
-          "A Scorpion PUGBM Közösség egy magyar PUBG Mobile játékosközösség. Csapatjáték, összetartás, scrimek és közös élmények.",
+          "A Scorpion PUBGM Közösség egy magyar PUBG Mobile játékosközösség. Csapatjáték, összetartás, scrimek és közös élmények.",
       },
-      { name: "author", content: "Scorpion PUGBM Közösség" },
-      { property: "og:title", content: "Scorpion PUGBM Közösség" },
+      { name: "author", content: "Scorpion PUBGM Közösség" },
+      { property: "og:title", content: "Scorpion PUBGM Közösség" },
       {
         property: "og:description",
         content: "Nem csak együtt játszunk. Egy közösséget építünk.",

@@ -10,14 +10,14 @@ type LogoProps = {
 };
 
 /**
- * Reusable Scorpion PUGBM logo component.
+ * Reusable Scorpion PUBGM logo component.
  * - If `src` is provided (transparent PNG/WebP/SVG), renders <img> with object-contain.
  * - Falls back to the built-in ScorpionMark vector when no src or on load error.
  * - Works for circular and square containers, mobile & desktop crisp.
  */
 export function Logo({
   src,
-  alt = "Scorpion PUGBM Közösség logó",
+  alt = "Scorpion PUBGM Közösség logó",
   className = "",
   imgClassName = "",
   rounded = "md",

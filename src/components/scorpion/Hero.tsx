@@ -114,7 +114,7 @@ export function Hero() {
 
           <h1 className="section-title !text-4xl sm:!text-6xl md:!text-7xl lg:!text-8xl font-extrabold">
             <span className="block text-foreground animate-title-glow">
-              SCORPION PUGBM
+              SCORPION PUBGM
             </span>
             <span className="block text-gradient-red mt-1">KÖZÖSSÉG</span>
           </h1>

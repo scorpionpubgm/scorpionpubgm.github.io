@@ -181,7 +181,7 @@ function LeaderCard({ player }: { player: Player }) {
               {player.name}
             </h3>
             <p className="mt-3 text-sm md:text-base text-muted-foreground max-w-xl">
-              A Scorpion PUGBM Közösség alapítója és vezetője. A csapat iránya, a
+              A Scorpion PUBGM Közösség alapítója és vezetője. A csapat iránya, a
               döntések és a közösség jövőképe az ő kezében.
             </p>
           </div>

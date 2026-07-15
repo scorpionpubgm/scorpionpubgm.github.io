@@ -179,7 +179,7 @@ export function ApplyForm() {
               <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
                 Elfogadom a{" "}
                 <span className="text-primary font-medium">
-                  Scorpion PUGBM Közösség szabályzatát
+                  Scorpion PUBGM Közösség szabályzatát
                 </span>
                 .
               </span>
