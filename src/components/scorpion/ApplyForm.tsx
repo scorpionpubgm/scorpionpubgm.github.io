@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Send, CheckCircle2 } from "lucide-react";
+import { useScorpionData } from "./data/ScorpionDataContext";
 
 type FormState = {
   playerName: string;
@@ -24,6 +25,7 @@ const initial: FormState = {
 };
 
 export function ApplyForm() {
+  const { addApplication } = useScorpionData();
   const [form, setForm] = useState<FormState>(initial);
   const [submitted, setSubmitted] = useState(false);
 
@@ -34,7 +36,9 @@ export function ApplyForm() {
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.accepted) return;
-    // Local-only in the first version. Backend hookup comes later.
+    const { accepted: _accepted, ...payload } = form;
+    void _accepted;
+    addApplication(payload);
     setSubmitted(true);
   }
 
@@ -63,9 +67,8 @@ export function ApplyForm() {
               Köszönjük a jelentkezést!
             </h3>
             <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
-              A jelentkezési űrlap felhasználói felülete elkészült. A valódi feldolgozás és
-              értesítés a Scorpion admin rendszer későbbi bevezetésével válik elérhetővé.
-              Addig is kövess minket Discordon.
+              Elmentettük a jelentkezésedet. A Scorpion admin csapat átnézi, és
+              hamarosan felveszik veled a kapcsolatot a Discordon.
             </p>
             <button
               type="button"
@@ -100,6 +103,7 @@ export function ApplyForm() {
                   type="number"
                   min={12}
                   max={99}
+                  inputMode="numeric"
                   value={form.age}
                   onChange={(e) => update("age", e.target.value)}
                   className="input-base"
@@ -195,8 +199,8 @@ export function ApplyForm() {
                 <Send className="h-4 w-4" />
               </button>
               <p className="mt-3 text-xs text-muted-foreground">
-                A jelentkezés jelenleg csak vizuálisan működik. A hivatalos adatbázis és
-                admin rendszer későbbi frissítésben érkezik.
+                A jelentkezésed az admin felületre kerül. A jelentkezéseket a
+                Scorpion csapat átnézi és Discordon veszik fel veled a kapcsolatot.
               </p>
             </div>
 
@@ -209,7 +213,7 @@ export function ApplyForm() {
                 padding: 0.75rem 0.9rem;
                 color: oklch(0.96 0.005 30);
                 font-family: var(--font-sans);
-                font-size: 0.9rem;
+                font-size: 0.95rem;
                 transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
                 outline: none;
               }
@@ -238,7 +242,7 @@ function Field({
   children: React.ReactNode;
 }) {
   return (
-    <label className="block">
+    <label className="block min-w-0">
       <span className="block text-xs font-display tracking-[0.2em] uppercase text-muted-foreground mb-2">
         {label} {required && <span className="text-primary">*</span>}
       </span>

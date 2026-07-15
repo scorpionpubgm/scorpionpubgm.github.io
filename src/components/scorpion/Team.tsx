@@ -1,42 +1,20 @@
 import { useState } from "react";
 import { Crown, Shield, Star, GraduationCap, User } from "lucide-react";
 import { ScorpionMark } from "./SocialIcons";
-
-type Player = {
-  name: string;
-  role: string;
-  badge?: string;
-  /** Optional avatar URL. When absent, the role icon is used. */
-  avatar?: string;
-};
-
-const LEADER: Player = { name: "〆SCP×Zs99×", role: "Tulajdonos • Vezető" };
-
-const LEADERSHIP: Player[] = [
-  { name: "〆SCPSwanJack", role: "Vezetőség" },
-  { name: "〆SCPCsernobil", role: "Vezetőség" },
-  { name: "〆SCPOlivér", role: "Vezetőség" },
-];
-
-const ADMINS: Player[] = [
-  { name: "〆SCPNoname", role: "Admin" },
-  { name: "〆SCPSword", role: "Admin", badge: "Trainer • Mentor" },
-  { name: "〆SCPÆTØM×͜×", role: "Admin" },
-  { name: "〆SCPLaca", role: "Admin" },
-  { name: "〆SCP×ROYALK9×", role: "Admin" },
-];
-
-const MEMBERS: Player[] = [
-  { name: "〆SCPEszkobar", role: "Scorpion Tag" },
-  { name: "〆SCPBandy", role: "Scorpion Tag" },
-  { name: "〆SCPMark", role: "Scorpion Tag" },
-  { name: "〆SCPENDLucifer", role: "Scorpion Tag" },
-  { name: "〆SCP『CinThia』", role: "Scorpion Tag" },
-  { name: "〆SCPHUNLucifer", role: "Scorpion Tag" },
-  { name: "〆SCP《MT》DOBY", role: "Scorpion Tag" },
-];
+import {
+  useScorpionData,
+  type TeamMember,
+  type TeamTier,
+} from "./data/ScorpionDataContext";
 
 export function Team() {
+  const { team } = useScorpionData();
+
+  const leader = team.find((m) => m.tier === "leader");
+  const leadership = team.filter((m) => m.tier === "leadership");
+  const admins = team.filter((m) => m.tier === "admin");
+  const members = team.filter((m) => m.tier === "member");
+
   return (
     <section id="csapat" className="relative py-24 md:py-32 overflow-hidden">
       <div className="pointer-events-none absolute top-40 right-0 h-[500px] w-[500px] rounded-full bg-blood/15 blur-[120px]" />
@@ -52,31 +30,37 @@ export function Team() {
           </p>
         </header>
 
-        <LeaderCard player={LEADER} />
+        {leader && <LeaderCard player={leader} />}
 
-        <RoleGroup title="Vezetőség" subtitle="A közösség irányítói">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {LEADERSHIP.map((p) => (
-              <PlayerCard key={p.name} player={p} tier="leadership" />
-            ))}
-          </div>
-        </RoleGroup>
+        {leadership.length > 0 && (
+          <RoleGroup title="Vezetőség" subtitle="A közösség irányítói">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {leadership.map((p) => (
+                <PlayerCard key={p.id} player={p} />
+              ))}
+            </div>
+          </RoleGroup>
+        )}
 
-        <RoleGroup title="Adminok" subtitle="Moderáció és mentorálás">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {ADMINS.map((p) => (
-              <PlayerCard key={p.name} player={p} tier="admin" />
-            ))}
-          </div>
-        </RoleGroup>
+        {admins.length > 0 && (
+          <RoleGroup title="Adminok" subtitle="Moderáció és mentorálás">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {admins.map((p) => (
+                <PlayerCard key={p.id} player={p} />
+              ))}
+            </div>
+          </RoleGroup>
+        )}
 
-        <RoleGroup title="Tagok" subtitle="A Scorpion aktív játékosai">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {MEMBERS.map((p) => (
-              <PlayerCard key={p.name} player={p} tier="member" />
-            ))}
-          </div>
-        </RoleGroup>
+        {members.length > 0 && (
+          <RoleGroup title="Tagok" subtitle="A Scorpion aktív játékosai">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {members.map((p) => (
+                <PlayerCard key={p.id} player={p} />
+              ))}
+            </div>
+          </RoleGroup>
+        )}
       </div>
     </section>
   );
@@ -107,44 +91,82 @@ function RoleGroup({
   );
 }
 
-/** Circular avatar with fallback icon and role-based glow ring */
-function Avatar({
+/**
+ * Premium avatar frame: circular with animated neon-red glow ring,
+ * ember-tone inner border and radial highlight for a gamer/esport feel.
+ */
+export function AvatarFrame({
   src,
   alt,
   size,
-  glowClass,
+  tier,
   fallback,
 }: {
   src?: string;
   alt: string;
   size: string;
-  glowClass: string;
+  tier: TeamTier;
   fallback: React.ReactNode;
 }) {
   const [failed, setFailed] = useState(false);
   const showImg = !!src && !failed;
+
+  const ringConfig: Record<TeamTier, { outer: string; inner: string }> = {
+    leader: {
+      outer:
+        "bg-[conic-gradient(from_0deg,oklch(0.62_0.24_25),oklch(0.72_0.20_35),oklch(0.62_0.24_25))] shadow-[0_0_24px_oklch(0.62_0.24_25/0.7)]",
+      inner: "bg-background",
+    },
+    leadership: {
+      outer:
+        "bg-[conic-gradient(from_0deg,oklch(0.62_0.24_25),oklch(0.42_0.20_25),oklch(0.62_0.24_25))] shadow-[0_0_18px_oklch(0.62_0.24_25/0.55)]",
+      inner: "bg-background",
+    },
+    admin: {
+      outer:
+        "bg-[conic-gradient(from_0deg,oklch(0.72_0.20_35),oklch(0.62_0.24_25),oklch(0.72_0.20_35))] shadow-[0_0_16px_oklch(0.72_0.20_35/0.45)]",
+      inner: "bg-background",
+    },
+    member: {
+      outer:
+        "bg-[conic-gradient(from_0deg,oklch(0.42_0.20_25),oklch(0.28_0.02_25),oklch(0.42_0.20_25))] shadow-[0_0_10px_oklch(0.62_0.24_25/0.35)]",
+      inner: "bg-background",
+    },
+  };
+  const cfg = ringConfig[tier];
+
   return (
-    <div
-      className={`relative shrink-0 ${size} rounded-full grid place-items-center overflow-hidden border ${glowClass}`}
-    >
-      {showImg ? (
-        <img
-          src={src}
-          alt={alt}
-          loading="lazy"
-          decoding="async"
-          onError={() => setFailed(true)}
-          className="h-full w-full object-cover"
-          draggable={false}
-        />
-      ) : (
-        fallback
-      )}
+    <div className={`relative shrink-0 ${size}`}>
+      {/* animated glow ring */}
+      <div
+        className={`absolute inset-0 rounded-full p-[2px] ${cfg.outer} animate-pulse-glow`}
+        aria-hidden
+      >
+        <div className={`h-full w-full rounded-full ${cfg.inner}`} />
+      </div>
+      {/* inner content */}
+      <div className="absolute inset-[3px] rounded-full overflow-hidden bg-gradient-to-br from-blood/40 via-background to-background grid place-items-center">
+        {showImg ? (
+          <img
+            src={src}
+            alt={alt}
+            loading="lazy"
+            decoding="async"
+            onError={() => setFailed(true)}
+            className="h-full w-full object-cover"
+            draggable={false}
+          />
+        ) : (
+          <div className="text-primary drop-shadow-[0_0_10px_oklch(0.62_0.24_25/0.8)]">
+            {fallback}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
 
-function LeaderCard({ player }: { player: Player }) {
+function LeaderCard({ player }: { player: TeamMember }) {
   return (
     <article className="relative group">
       <div className="absolute inset-0 rounded-2xl bg-primary/25 blur-2xl opacity-60 group-hover:opacity-100 transition-opacity" />
@@ -155,18 +177,13 @@ function LeaderCard({ player }: { player: Player }) {
         <ScorpionMark className="pointer-events-none absolute -right-10 -top-10 h-[280px] w-[280px] opacity-[0.08]" />
 
         <div className="relative p-6 sm:p-10 md:p-12 flex flex-col md:flex-row items-center md:items-end gap-6 md:gap-10">
-          <div className="relative shrink-0">
-            <div className="absolute inset-0 -m-2 rounded-full bg-primary/40 blur-2xl animate-pulse-glow" />
-            <Avatar
-              src={player.avatar}
-              alt={player.name}
-              size="h-32 w-32 md:h-40 md:w-40"
-              glowClass="border-2 border-primary/70 bg-gradient-to-br from-primary/30 via-background to-background shadow-glow"
-              fallback={
-                <Crown className="h-14 w-14 md:h-16 md:w-16 text-primary drop-shadow-[0_0_20px_oklch(0.62_0.24_25/0.8)]" />
-              }
-            />
-          </div>
+          <AvatarFrame
+            src={player.avatar}
+            alt={player.name}
+            size="h-32 w-32 md:h-40 md:w-40"
+            tier="leader"
+            fallback={<Crown className="h-14 w-14 md:h-16 md:w-16" />}
+          />
 
           <div className="flex-1 min-w-0 text-center md:text-left">
             <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-3">
@@ -191,47 +208,21 @@ function LeaderCard({ player }: { player: Player }) {
   );
 }
 
-function PlayerCard({
-  player,
-  tier,
-}: {
-  player: Player;
-  tier: "leadership" | "admin" | "member";
-}) {
-  const tierConfig = {
-    leadership: {
-      icon: Shield,
-      glow: "group-hover:shadow-glow-sm",
-      iconWrap: "border-primary/60 bg-primary/15 text-primary shadow-[0_0_18px_oklch(0.62_0.24_25/0.35)]",
-      iconInner: "bg-primary/15 border-primary/50 text-primary",
-    },
-    admin: {
-      icon: Shield,
-      glow: "group-hover:shadow-glow-sm",
-      iconWrap: "border-ember/50 bg-ember/10 text-ember shadow-[0_0_14px_oklch(0.72_0.20_35/0.25)]",
-      iconInner: "bg-ember/10 border-ember/40 text-ember",
-    },
-    member: {
-      icon: User,
-      glow: "group-hover:shadow-glow-sm",
-      iconWrap: "border-border bg-muted/60 text-foreground/80",
-      iconInner: "bg-muted/60 border-border text-foreground/80",
-    },
-  }[tier];
-  const Icon = tierConfig.icon;
+function PlayerCard({ player }: { player: TeamMember }) {
+  const Icon = player.tier === "leadership" || player.tier === "admin" ? Shield : User;
 
   return (
     <article
-      className={`group relative scorpion-border rounded-xl p-5 overflow-hidden transition-all duration-300 hover:-translate-y-1 ${tierConfig.glow}`}
+      className="group relative scorpion-border rounded-xl p-5 overflow-hidden transition-all duration-300 hover:-translate-y-1 group-hover:shadow-glow-sm"
     >
       <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-primary/10 via-transparent to-transparent" />
 
-      <div className="relative flex items-center gap-4">
-        <Avatar
+      <div className="relative flex items-center gap-4 min-w-0">
+        <AvatarFrame
           src={player.avatar}
           alt={player.name}
           size="h-14 w-14"
-          glowClass={tierConfig.iconWrap}
+          tier={player.tier}
           fallback={<Icon className="h-6 w-6" />}
         />
 

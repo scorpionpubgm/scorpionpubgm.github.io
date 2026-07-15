@@ -1,8 +1,9 @@
 import { CalendarClock, ExternalLink } from "lucide-react";
-import { EVENTS, type EventStatus } from "./data/events";
+import { useScorpionData, type EventStatus } from "./data/ScorpionDataContext";
 
 export function Events() {
-  const hasEvents = EVENTS.length > 0;
+  const { events } = useScorpionData();
+  const hasEvents = events.length > 0;
 
   return (
     <section id="esemenyek" className="relative py-24 md:py-32 overflow-hidden">
@@ -22,9 +23,9 @@ export function Events() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {hasEvents
-            ? EVENTS.map((e, i) => (
+            ? events.map((e) => (
                 <article
-                  key={`${e.title}-${i}`}
+                  key={e.id}
                   className="scorpion-border rounded-xl p-6 bg-gradient-card flex flex-col"
                 >
                   <div className="flex items-center justify-between mb-4 gap-2">
