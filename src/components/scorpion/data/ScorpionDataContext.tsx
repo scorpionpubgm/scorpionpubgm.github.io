@@ -59,52 +59,32 @@ export type Application = {
 export const AVATAR_PRESETS: { label: string; url: string }[] = [
   {
     label: "PUBG Warrior",
-    url: "https://api.dicebear.com/9.x/adventurer/svg?seed=Warrior&backgroundColor=1a0505",
-  },
-  {
-    label: "PUBG Ghost",
-    url: "https://api.dicebear.com/9.x/bottts/svg?seed=Ghost&backgroundColor=1a0505",
-  },
-  {
-    label: "PUBG Sniper",
-    url: "https://api.dicebear.com/9.x/bottts/svg?seed=Sniper&backgroundColor=1a0505",
-  },
-  {
-    label: "PUBG Assault",
-    url: "https://api.dicebear.com/9.x/adventurer/svg?seed=Assault&backgroundColor=1a0505",
-  },
-  {
-    label: "PUBG Rogue",
-    url: "https://api.dicebear.com/9.x/adventurer/svg?seed=Rogue&backgroundColor=1a0505",
-  },
-  {
-    label: "PUBG Skull",
-    url: "https://api.dicebear.com/9.x/bottts/svg?seed=Skull&backgroundColor=1a0505",
+    url: "https://unsplash.com",
   },
 ];
 
 /* ============= Defaults ============= */
 
 const DEFAULT_TEAM: TeamMember[] = [
-  { id: "leader-1", name: "〆SCP×Zs99×", role: "Tulajdonos • Vezető", tier: "leader", avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=Warrior&backgroundColor=1a0505" },
+  { id: "leader-1", name: "〆SCP×Zs99×", role: "Tulajdonos • Tulajdonos", tier: "leader", avatar: "https://unsplash.com" },
 
-  { id: "lead-1", name: "〆SCPSwanJack", role: "Vezetőség", tier: "leadership", avatar: "https://api.dicebear.com/9.x/bottts/svg?seed=Ghost&backgroundColor=1a0505" },
-  { id: "lead-2", name: "〆SCPCsernobil", role: "Vezetőség", tier: "leadership", avatar: "https://api.dicebear.com/9.x/bottts/svg?seed=Sniper&backgroundColor=1a0505" },
-  { id: "lead-3", name: "〆SCPOlivér", role: "Vezetőség", tier: "leadership", avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=Assault&backgroundColor=1a0505" },
+  { id: "lead-1", name: "〆SCPSwanJack", role: "Vezetőség • Vezetőség", tier: "leadership", avatar: "https://unsplash.com" },
+  { id: "lead-2", name: "〆SCPCsernobil", role: "Vezetőség • Vezetőség", tier: "leadership", avatar: "https://unsplash.com" },
+  { id: "lead-3", name: "〆SCPOlivér", role: "Vezetőség • Vezetőség", tier: "leadership", avatar: "https://unsplash.com" },
 
-  { id: "adm-1", name: "〆SCPNoname", role: "Admin", tier: "admin", avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=Rogue&backgroundColor=1a0505" },
-  { id: "adm-2", name: "〆SCPSword", role: "Admin", tier: "admin", badge: "Trainer • Mentor", avatar: "https://api.dicebear.com/9.x/bottts/svg?seed=Skull&backgroundColor=1a0505" },
-  { id: "adm-3", name: "〆SCPÆTØM×͜×", role: "Admin", tier: "admin", avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=Warrior&backgroundColor=1a0505" },
-  { id: "adm-4", name: "〆SCPLaca", role: "Admin", tier: "admin", avatar: "https://api.dicebear.com/9.x/bottts/svg?seed=Ghost&backgroundColor=1a0505" },
-  { id: "adm-5", name: "〆SCP×ROYALK9×", role: "Admin", tier: "admin", avatar: "https://api.dicebear.com/9.x/bottts/svg?seed=Sniper&backgroundColor=1a0505" },
+  { id: "adm-1", name: "〆SCPNoname", role: "Vezetőség • Vezetőség", tier: "admin", avatar: "https://unsplash.com" },
+  { id: "adm-2", name: "〆SCPSword", role: "Admin • Admin • Trainer ...", tier: "admin", avatar: "https://unsplash.com" },
+  { id: "adm-3", name: "〆SCPÆTØM×͜×", role: "Admin • Admin", tier: "admin", avatar: "https://unsplash.com" },
+  { id: "adm-4", name: "〆SCPLaca", role: "Admin • Admin • Szerve...", tier: "admin", avatar: "https://unsplash.com" },
+  { id: "adm-5", name: "〆SCP×ROYALK9×", role: "Admin • Admin", tier: "admin", avatar: "https://unsplash.com" },
 
-  { id: "mem-1", name: "〆SCPEszkobar", role: "Scorpion Tag", tier: "member", avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=Assault&backgroundColor=1a0505" },
-  { id: "mem-2", name: "〆SCPBandy", role: "Scorpion Tag", tier: "member", avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=Rogue&backgroundColor=1a0505" },
-  { id: "mem-3", name: "〆SCPMark", role: "Scorpion Tag", tier: "member", avatar: "https://api.dicebear.com/9.x/bottts/svg?seed=Skull&backgroundColor=1a0505" },
-  { id: "mem-4", name: "〆SCPENDLucifer", role: "Scorpion Tag", tier: "member", avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=Warrior&backgroundColor=1a0505" },
-  { id: "mem-5", name: "〆SCP『CinThia』", role: "Scorpion Tag", tier: "member", avatar: "https://api.dicebear.com/9.x/bottts/svg?seed=Ghost&backgroundColor=1a0505" },
-  { id: "mem-6", name: "〆SCPHUNLucifer", role: "Scorpion Tag", tier: "member", avatar: "https://api.dicebear.com/9.x/bottts/svg?seed=Sniper&backgroundColor=1a0505" },
-  { id: "mem-7", name: "〆SCP《MT》DOBY", role: "Scorpion Tag", tier: "member", avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=Assault&backgroundColor=1a0505" },
+  { id: "mem-1", name: "〆SCPEszkobar", role: "Tag • Scorpion Tag", tier: "member", avatar: "https://unsplash.com" },
+  { id: "mem-2", name: "〆SCPBandy", role: "Scorpion Tag", tier: "member", avatar: "https://unsplash.com" },
+  { id: "mem-3", name: "〆SCPMark", role: "Scorpion Tag", tier: "member", avatar: "https://unsplash.com" },
+  { id: "mem-4", name: "〆SCPENDLucifer", role: "Scorpion Tag", tier: "member", avatar: "https://unsplash.com" },
+  { id: "mem-5", name: "〆SCP『CinThia』", role: "Scorpion Tag", tier: "member", avatar: "https://unsplash.com" },
+  { id: "mem-6", name: "〆SCPHUNLucifer", role: "Scorpion Tag", tier: "member", avatar: "https://unsplash.com" },
+  { id: "mem-7", name: "〆SCP《MT》DOBY", role: "Scorpion Tag", tier: "member", avatar: "https://unsplash.com" },
 ];
 
 const DEFAULT_EVENTS: ScorpionEvent[] = [];
@@ -140,7 +120,7 @@ type Ctx = {
 const ScorpionDataCtx = createContext<Ctx | null>(null);
 
 const KEYS = {
-  team: "scorpion.team.v1_fixed", // Átváltás új kulcsra az elavult cache felülírásához
+  team: "scorpion.team.v1_final_style", // Ismét új kulcs, hogy biztosan kitörölje a színes karaktereket
   events: "scorpion.events.v1",
   media: "scorpion.media.v1",
   sponsors: "scorpion.sponsors.v1",
