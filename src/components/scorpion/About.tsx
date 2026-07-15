@@ -31,7 +31,7 @@ export function About() {
           </h2>
           <div className="mt-8 space-y-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
             <p>
-              A <span className="text-foreground font-medium">Scorpion PUGBM Közösség</span> több
+              A <span className="text-foreground font-medium">Scorpion PUBGM Közösség</span> több
               mint egy egyszerű PUBG Mobile csapat.
             </p>
             <p>

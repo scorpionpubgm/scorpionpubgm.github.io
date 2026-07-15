@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 
 /**
- * If a real Scorpion PUGBM logo file becomes available, set its URL here
+ * If a real Scorpion PUBGM logo file becomes available, set its URL here
  * (transparent PNG/WebP/SVG). Until then the built-in ScorpionMark is used.
  */
 const SCORPION_LOGO_SRC: string | undefined = undefined;
@@ -55,7 +55,7 @@ export function Navigation() {
             />
             <div className="hidden sm:flex flex-col leading-none min-w-0">
               <span className="font-display font-bold text-sm tracking-[0.2em] text-foreground">SCORPION</span>
-              <span className="font-display text-[0.65rem] tracking-[0.3em] text-primary">PUGBM KÖZÖSSÉG</span>
+              <span className="font-display text-[0.65rem] tracking-[0.3em] text-primary">PUBGM KÖZÖSSÉG</span>
             </div>
           </a>
 

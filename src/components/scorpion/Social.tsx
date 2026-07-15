@@ -20,7 +20,7 @@ const PLATFORMS = [
   {
     key: "facebook",
     title: "Scorpion Facebook",
-    desc: "Kövesd a Scorpion PUGBM Közösség híreit és bejegyzéseit Facebookon.",
+    desc: "Kövesd a Scorpion PUBGM Közösség híreit és bejegyzéseit Facebookon.",
     cta: "Scorpion a Facebookon",
     url: SOCIAL_LINKS.facebook,
     Icon: FacebookIcon,
@@ -36,7 +36,7 @@ const PLATFORMS = [
   {
     key: "tiktok",
     title: "Scorpion TikTok",
-    desc: "Kövesd a Scorpion PUGBM videóit, promócióit és TikTok élő adásait.",
+    desc: "Kövesd a Scorpion PUBGM videóit, promócióit és TikTok élő adásait.",
     cta: "Scorpion a TikTokon",
     url: SOCIAL_LINKS.tiktok,
     Icon: TikTokIcon,
@@ -55,7 +55,7 @@ export function Social() {
             Kövess minket • <span className="text-gradient-red">Csatlakozz</span>
           </h2>
           <p className="mt-5 text-lg text-muted-foreground">
-            Légy részese a Scorpion PUGBM Közösségnek. Csatlakozz Discord szerverünkhöz, és
+            Légy részese a Scorpion PUBGM Közösségnek. Csatlakozz Discord szerverünkhöz, és
             kövesd a közösség legújabb tartalmait, eseményeit és videóit.
           </p>
         </header>

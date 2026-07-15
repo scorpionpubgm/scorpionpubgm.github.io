@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { DiscordIcon, FacebookIcon, InstagramIcon, TikTokIcon, ScorpionMark } from "./SocialIcons";
 import { SOCIAL_LINKS } from "./Social";
 
@@ -24,7 +25,7 @@ export function Footer() {
           </div>
 
           <h3 className="font-display font-extrabold text-2xl sm:text-3xl tracking-[0.2em] uppercase text-foreground">
-            Scorpion PUGBM <span className="text-gradient-red">Közösség</span>
+            Scorpion PUBGM <span className="text-gradient-red">Közösség</span>
           </h3>
           <p className="font-display text-base text-muted-foreground tracking-wide">
             „Egy közösség. Egy csapat. Egy Scorpion.”
@@ -48,8 +49,16 @@ export function Footer() {
         </div>
 
         <div className="mt-14 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} Scorpion PUGBM Közösség — Minden jog fenntartva.</p>
-          <p className="font-display tracking-[0.2em] uppercase">Magyar PUBG Mobile közösség</p>
+          <p>© {new Date().getFullYear()} Scorpion PUBGM Közösség — Minden jog fenntartva.</p>
+          <div className="flex items-center gap-4">
+            <p className="font-display tracking-[0.2em] uppercase">Magyar PUBG Mobile közösség</p>
+            <Link
+              to="/admin-dashboard"
+              className="font-display tracking-[0.2em] uppercase text-primary/70 hover:text-primary transition-colors"
+            >
+              Admin
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
