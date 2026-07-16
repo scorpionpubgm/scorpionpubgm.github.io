@@ -68,25 +68,26 @@ export const AVATAR_PRESETS: { label: string; url: string }[] = [
 /* ============= Defaults ============= */
 
 const DEFAULT_TEAM: TeamMember[] = [
-  { id: "leader-1", name: "〆SCP×Zs99×", role: "Tulajdonos • Tulajdonos", tier: "leader", avatar: "/file_00000000834c71f4bb75170d271bd4e4.png" },
+  { id: "leader-1", name: "〆SCP×Zs99×", role: "Tulajdonos • Tulajdonos", tier: "leader", pubgId: "5123456789", avatar: "/file_00000000834c71f4bb75170d271bd4e4.png" },
 
-  { id: "lead-1", name: "〆SCP•SwanJack•", role: "Vezetőség • Vezetőség", tier: "leadership", avatar: "/file_00000000820871f48aa3d33f7a0125a7.png" },
-  { id: "lead-2", name: "〆SCP•Csernobil•", role: "Vezetőség • Vezetőség", tier: "leadership", avatar: "/file_0000000053e871f4b9c1f7a6718ec8ec.png" },
-  { id: "lead-3", name: "〆SCP•Olivér•", role: "Vezetőség • Vezetőség", tier: "leadership", avatar: "/file_00000000c3b071f4b0d6ff51e4ed01c6.png" },
+  { id: "lead-1", name: "〆SCP•SwanJack•", role: "Vezetőség • Vezetőség", tier: "leadership", pubgId: "5123456790", avatar: "/file_00000000820871f48aa3d33f7a0125a7.png" },
+  { id: "lead-2", name: "〆SCP•Csernobil•", role: "Vezetőség • Vezetőség", tier: "leadership", pubgId: "5123456791", avatar: "/file_0000000053e871f4b9c1f7a6718ec8ec.png" },
+  { id: "lead-3", name: "〆SCP•Olivér•", role: "Vezetőség • Vezetőség", tier: "leadership", pubgId: "5123456792", avatar: "/file_00000000c3b071f4b0d6ff51e4ed01c6.png" },
 
-  { id: "adm-1", name: "〆SCP•Noname•", role: "Admin • Vezetőség", tier: "admin", avatar: "/file_00000000b5f071f49e2e77a5185dbc7c.png" },
-  { id: "adm-2", name: "〆SCP•Sword•", role: "Admin • Admin • Trainer ...", tier: "admin", avatar: "/file_00000000f9d4724681677cca65a96a9e.png" },
-  { id: "adm-3", name: "〆SCP•ÆTØM×͜×•", role: "Admin • Admin", tier: "admin", avatar: "/file_00000000e32471f48b49fb998724ea85.png" },
-  { id: "adm-4", name: "〆SCP•Laca•", role: "Admin • Admin • Szerve...", tier: "admin", avatar: "/file_00000000ec7471f496c855cae3d16b89.png" },
-  { id: "adm-5", name: "〆SCP×ROYALK9×", role: "Admin • Admin", tier: "admin", avatar: "/file_00000000d6e47246b8f2b38ddff25a1c.png" },
+  { id: "adm-1", name: "〆SCP•Noname•", role: "Admin • Vezetőség", tier: "admin", pubgId: "5123456793", avatar: "/file_00000000b5f071f49e2e77a5185dbc7c.png" },
+  { id: "adm-2", name: "〆SCP•Sword•", role: "Admin • Admin • Trainer ...", tier: "admin", pubgId: "5123456794", avatar: "/file_00000000f9d4724681677cca65a96a9e.png" },
+  { id: "adm-3", name: "〆SCP•ÆTØM×͜×•", role: "Admin • Admin", tier: "admin", pubgId: "5123456795", avatar: "/file_00000000e32471f48b49fb998724ea85.png" },
+  { id: "adm-4", name: "〆SCP•Laca•", role: "Admin • Admin • Szerve...", tier: "admin", pubgId: "5123456796", avatar: "/file_00000000ec7471f496c855cae3d16b89.png" },
+  { id: "adm-5", name: "〆SCP×ROYALK9×", role: "Admin • Admin", tier: "admin", pubgId: "5123456797", avatar: "/file_00000000d6e47246b8f2b38ddff25a1c.png" },
 
-  { id: "mem-1", name: "〆SCP•Eszkobar•", role: "Tag • Tag • Scorpion Tag", tier: "member", avatar: "/file_000000009a547246bf185f93e1441dc2.png" },
-  { id: "mem-2", name: "〆SCP•Bandy•", role: "Scorpion Tag", tier: "member", avatar: "/file_000000005cc072468007fee3b1f9ed0d.png" },
-  { id: "mem-3", name: "〆SCP•Mark•", role: "Scorpion Tag", tier: "member", avatar: "/file_0000000070a87246b0e50a8b926329df.png" },
-  { id: "mem-4", name: "〆SCP•ENDLucifer•", role: "Scorpion Tag", tier: "member", avatar: "/file_00000000a17472468097338596561a7b.png" },
-  { id: "mem-5", name: "〆SCP『CinThia』", role: "Scorpion Tag", tier: "member", avatar: "/file_00000000d3307246bd6e9d4d8e79c51f.png" },
-  { id: "mem-7", name: "〆SCP《MT》DOBY", role: "Scorpion Tag", tier: "member", avatar: "/file_0000000030a472468f2b44a5b1305fed.png" },
+  { id: "mem-1", name: "〆SCP•Eszkobar•", role: "Tag • Tag • Scorpion Tag", tier: "member", pubgId: "5123456798", avatar: "/file_000000009a547246bf185f93e1441dc2.png" },
+  { id: "mem-2", name: "〆SCP•Bandy•", role: "Scorpion Tag", tier: "member", pubgId: "5123456799", avatar: "/file_000000005cc072468007fee3b1f9ed0d.png" },
+  { id: "mem-3", name: "〆SCP•Mark•", role: "Scorpion Tag", tier: "member", pubgId: "5123456800", avatar: "/file_0000000070a87246b0e50a8b926329df.png" },
+  { id: "mem-4", name: "〆SCP•ENDLucifer•", role: "Scorpion Tag", tier: "member", pubgId: "5123456801", avatar: "/file_00000000a17472468097338596561a7b.png" },
+  { id: "mem-5", name: "〆SCP『CinThia』", role: "Scorpion Tag", tier: "member", pubgId: "5123456802", avatar: "/file_00000000d3307246bd6e9d4d8e79c51f.png" },
+  { id: "mem-7", name: "〆SCP《MT》DOBY", role: "Scorpion Tag", tier: "member", pubgId: "5123456803", avatar: "/file_0000000030a472468f2b44a5b1305fed.png" },
 ];
+
 
 const DEFAULT_EVENTS: ScorpionEvent[] = [];
 const DEFAULT_MEDIA: MediaItem[] = [];
