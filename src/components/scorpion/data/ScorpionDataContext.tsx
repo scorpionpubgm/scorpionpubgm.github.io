@@ -48,6 +48,7 @@ export type Application = {
   id: string;
   createdAt: string;
   playerName: string;
+  pubgId: string;
   age: string;
   activity: string;
   rank: string;
