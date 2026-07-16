@@ -85,6 +85,58 @@ export function Footer() {
           </div>
         </div>
       </div>
+
+      {open && (
+        <div
+          className="fixed inset-0 z-[100] grid place-items-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in"
+          onClick={() => setOpen(false)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <form
+            onSubmit={submit}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-sm rounded-2xl border border-primary/60 bg-background/95 p-6 shadow-[0_0_40px_oklch(0.62_0.24_25/0.45)]"
+          >
+            <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-primary/30" />
+            <h3 className="font-display font-extrabold text-xl tracking-[0.2em] uppercase text-foreground mb-1">
+              Admin <span className="text-gradient-red">Belépés</span>
+            </h3>
+            <p className="text-xs text-muted-foreground mb-5">Add meg a hozzáférési kódot.</p>
+
+            <input
+              type="password"
+              autoFocus
+              value={pin}
+              onChange={(e) => { setPin(e.target.value); setError(false); }}
+              placeholder="PIN kód"
+              className="w-full rounded-lg bg-black/60 border border-primary/40 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/40 px-4 py-3 text-foreground placeholder:text-muted-foreground/60 font-mono tracking-widest"
+            />
+
+            {error && (
+              <p className="mt-3 text-sm font-semibold text-primary animate-pulse">
+                Hibás hozzáférés!
+              </p>
+            )}
+
+            <div className="mt-5 flex gap-3">
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="flex-1 rounded-lg border border-border/60 bg-transparent px-4 py-2.5 text-sm font-display tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground hover:border-foreground/40 transition"
+              >
+                Mégse
+              </button>
+              <button
+                type="submit"
+                className="flex-1 rounded-lg bg-primary/90 hover:bg-primary px-4 py-2.5 text-sm font-display tracking-[0.15em] uppercase text-primary-foreground shadow-[0_0_20px_oklch(0.62_0.24_25/0.5)] transition"
+              >
+                Belépés
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </footer>
   );
 }
