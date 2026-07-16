@@ -160,6 +160,7 @@ function DeleteBtn({ onClick, label = "Törlés" }: { onClick: () => void; label
 function TeamAdmin() {
   const { team, addTeam, removeTeam } = useScorpionData();
   const [name, setName] = useState("");
+  const [pubgId, setPubgId] = useState("");
   const [role, setRole] = useState("Scorpion Tag");
   const [tier, setTier] = useState<TeamTier>("member");
   const [avatarSource, setAvatarSource] = useState<"preset" | "url">("preset");
@@ -175,9 +176,11 @@ function TeamAdmin() {
       role: role.trim() || "Scorpion Tag",
       tier,
       badge: badge.trim() || undefined,
+      pubgId: pubgId.trim() || undefined,
       avatar: (avatarSource === "url" ? customUrl : preset).trim() || undefined,
     });
     setName("");
+    setPubgId("");
     setBadge("");
     setCustomUrl("");
   }
