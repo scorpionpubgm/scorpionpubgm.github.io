@@ -4,6 +4,7 @@ import { useScorpionData } from "./data/ScorpionDataContext";
 
 type FormState = {
   playerName: string;
+  pubgId: string;
   age: string;
   activity: string;
   rank: string;
@@ -15,6 +16,7 @@ type FormState = {
 
 const initial: FormState = {
   playerName: "",
+  pubgId: "",
   age: "",
   activity: "",
   rank: "",
@@ -94,6 +96,17 @@ export function ApplyForm() {
                   onChange={(e) => update("playerName", e.target.value)}
                   className="input-base"
                   placeholder="pl. 〆SCP..."
+                />
+              </Field>
+
+              <Field label="PUBG Mobile ID azonosító" required>
+                <input
+                  required
+                  value={form.pubgId}
+                  onChange={(e) => update("pubgId", e.target.value)}
+                  className="input-base"
+                  placeholder="pl. 5123456789"
+                  inputMode="numeric"
                 />
               </Field>
 

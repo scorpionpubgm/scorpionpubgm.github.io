@@ -160,6 +160,7 @@ function DeleteBtn({ onClick, label = "Törlés" }: { onClick: () => void; label
 function TeamAdmin() {
   const { team, addTeam, removeTeam } = useScorpionData();
   const [name, setName] = useState("");
+  const [pubgId, setPubgId] = useState("");
   const [role, setRole] = useState("Scorpion Tag");
   const [tier, setTier] = useState<TeamTier>("member");
   const [avatarSource, setAvatarSource] = useState<"preset" | "url">("preset");
@@ -175,9 +176,11 @@ function TeamAdmin() {
       role: role.trim() || "Scorpion Tag",
       tier,
       badge: badge.trim() || undefined,
+      pubgId: pubgId.trim() || undefined,
       avatar: (avatarSource === "url" ? customUrl : preset).trim() || undefined,
     });
     setName("");
+    setPubgId("");
     setBadge("");
     setCustomUrl("");
   }
@@ -194,6 +197,16 @@ function TeamAdmin() {
               onChange={(e) => setName(e.target.value)}
               placeholder="pl. 〆SCPNewPlayer"
               required
+            />
+          </div>
+          <div className="sm:col-span-2">
+            <Label>PUBG Mobile ID</Label>
+            <input
+              className="admin-input"
+              value={pubgId}
+              onChange={(e) => setPubgId(e.target.value)}
+              placeholder="pl. 5123456789"
+              inputMode="numeric"
             />
           </div>
           <div>
@@ -674,6 +687,7 @@ function ApplicationsAdmin() {
                 <DeleteBtn onClick={() => removeApplication(a.id)} />
               </div>
               <dl className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-xs">
+                <Row k="PUBG ID" v={a.pubgId} />
                 <Row k="Életkor" v={a.age} />
                 <Row k="Rank" v={a.rank} />
                 <Row k="Aktivitás" v={a.activity} />
