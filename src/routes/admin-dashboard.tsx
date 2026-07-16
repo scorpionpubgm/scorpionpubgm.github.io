@@ -687,6 +687,7 @@ function ApplicationsAdmin() {
                 <DeleteBtn onClick={() => removeApplication(a.id)} />
               </div>
               <dl className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-xs">
+                <Row k="PUBG ID" v={a.pubgId} />
                 <Row k="Életkor" v={a.age} />
                 <Row k="Rank" v={a.rank} />
                 <Row k="Aktivitás" v={a.activity} />
