@@ -74,12 +74,14 @@ export function Footer() {
           <p>© {new Date().getFullYear()} Scorpion PUBGM Közösség — Minden jog fenntartva.</p>
           <div className="flex items-center gap-4">
             <p className="font-display tracking-[0.2em] uppercase">Magyar PUBG Mobile közösség</p>
-            <Link
-              to="/admin-dashboard"
+            <button
+              type="button"
+              onClick={() => { setError(false); setPin(""); setOpen(true); }}
               className="font-display tracking-[0.2em] uppercase text-primary/70 hover:text-primary transition-colors"
             >
               Admin
-            </Link>
+            </button>
+
           </div>
         </div>
       </div>
