@@ -1,6 +1,10 @@
-import { Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { DiscordIcon, FacebookIcon, InstagramIcon, TikTokIcon, ScorpionMark } from "./SocialIcons";
 import { SOCIAL_LINKS } from "./Social";
+
+const ADMIN_PIN = "ScorpionAdmin2026";
+
 
 const ICONS = [
   { label: "Discord", url: SOCIAL_LINKS.discord, Icon: DiscordIcon },
