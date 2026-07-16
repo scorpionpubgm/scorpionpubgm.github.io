@@ -99,6 +99,17 @@ export function ApplyForm() {
                 />
               </Field>
 
+              <Field label="PUBG Mobile ID azonosító" required>
+                <input
+                  required
+                  value={form.pubgId}
+                  onChange={(e) => update("pubgId", e.target.value)}
+                  className="input-base"
+                  placeholder="pl. 5123456789"
+                  inputMode="numeric"
+                />
+              </Field>
+
               <Field label="Életkor" required>
                 <input
                   required
