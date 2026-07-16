@@ -207,7 +207,7 @@ function LeaderCard({ player }: { player: TeamMember }) {
               döntések és a közösség jövőképe az ő kezében.
             </p>
 
-            </p>
+
           </div>
         </div>
       </div>
