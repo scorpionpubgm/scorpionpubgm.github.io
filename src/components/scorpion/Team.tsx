@@ -245,6 +245,12 @@ function PlayerCard({ player }: { player: TeamMember }) {
           <h4 className="font-display font-bold text-base sm:text-lg text-foreground break-words leading-tight">
             {player.name}
           </h4>
+          {player.pubgId && (
+            <p className="mt-1 text-xs font-mono tracking-wider text-muted-foreground/80">
+              ID: <span className="text-primary/70">{player.pubgId}</span>
+            </p>
+          )}
+
         </div>
       </div>
 
