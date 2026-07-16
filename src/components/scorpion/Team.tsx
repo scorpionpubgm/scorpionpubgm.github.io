@@ -197,10 +197,17 @@ function LeaderCard({ player }: { player: TeamMember }) {
             <h3 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-foreground tracking-wide break-words">
               {player.name}
             </h3>
+            {player.pubgId && (
+              <p className="mt-1 text-sm font-mono tracking-wider text-primary/70">
+                ID: {player.pubgId}
+              </p>
+            )}
             <p className="mt-3 text-sm md:text-base text-muted-foreground max-w-xl">
               A Scorpion PUBGM Közösség alapítója és vezetője. A csapat iránya, a
               döntések és a közösség jövőképe az ő kezében.
             </p>
+
+
           </div>
         </div>
       </div>
@@ -238,6 +245,12 @@ function PlayerCard({ player }: { player: TeamMember }) {
           <h4 className="font-display font-bold text-base sm:text-lg text-foreground break-words leading-tight">
             {player.name}
           </h4>
+          {player.pubgId && (
+            <p className="mt-1 text-xs font-mono tracking-wider text-muted-foreground/80">
+              ID: <span className="text-primary/70">{player.pubgId}</span>
+            </p>
+          )}
+
         </div>
       </div>
 
