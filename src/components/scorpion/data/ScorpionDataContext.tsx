@@ -87,7 +87,7 @@ const DEFAULT_TEAM: TeamMember[] = [
   { id: "mem-4", name: "〆SCP•ENDLucifer•", role: "Scorpion Tag", tier: "member", pubgId: "5181054306", avatar: "/file_00000000a17472468097338596561a7b.png" },
   { id: "mem-5", name: "〆SCP『CinThia』", role: "Scorpion Tag", tier: "member", pubgId: "5531503775", avatar: "/file_00000000d3307246bd6e9d4d8e79c51f.png" },
   { id: "mem-7", name: "〆SCP《MT》DOBY", role: "Scorpion Tag", tier: "member", pubgId: "51774769651", avatar: "/file_0000000030a472468f2b44a5b1305fed.png" },
-  { id: "mem-8", name: "Új Tag", role: "Scorpion Tag", tier: "member", pubgId: "Hamarosan" },
+  { id: "mem-8", name: "〆SCP×Hordó×", role: "Scorpion Tag", tier: "member", pubgId: "5314251903", avatar: "/file_000000001e807246910752251d8b7696.png" },
 ];
 
 
