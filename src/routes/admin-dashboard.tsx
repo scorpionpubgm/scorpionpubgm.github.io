@@ -199,6 +199,16 @@ function TeamAdmin() {
               required
             />
           </div>
+          <div className="sm:col-span-2">
+            <Label>PUBG Mobile ID</Label>
+            <input
+              className="admin-input"
+              value={pubgId}
+              onChange={(e) => setPubgId(e.target.value)}
+              placeholder="pl. 5123456789"
+              inputMode="numeric"
+            />
+          </div>
           <div>
             <Label>Rang / Szerep</Label>
             <input
