@@ -14,7 +14,25 @@ const ICONS = [
 ];
 
 export function Footer() {
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [pin, setPin] = useState("");
+  const [error, setError] = useState(false);
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (pin === ADMIN_PIN) {
+      setOpen(false);
+      setPin("");
+      setError(false);
+      navigate({ to: "/admin-dashboard" });
+    } else {
+      setError(true);
+    }
+  };
+
   return (
+
     <footer className="relative pt-20 pb-10 border-t border-primary/20 overflow-hidden">
       <div className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 h-[300px] w-[900px] rounded-full bg-primary/10 blur-[120px]" />
       <ScorpionMark className="pointer-events-none absolute -right-20 top-10 h-[400px] w-[400px] opacity-[0.04]" />
