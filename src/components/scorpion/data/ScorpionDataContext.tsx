@@ -122,7 +122,7 @@ type Ctx = {
 const ScorpionDataCtx = createContext<Ctx | null>(null);
 
 const KEYS = {
-  team: "scorpion.team.v1_all_user_custom_png_images_v4_perfect_names", // Új kulcs a pontos nevek miatti tiszta frissítéshez
+  team: "scorpion.team.v2_pubgid",
   events: "scorpion.events.v1",
   media: "scorpion.media.v1",
   sponsors: "scorpion.sponsors.v1",
