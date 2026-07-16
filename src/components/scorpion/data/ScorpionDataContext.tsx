@@ -124,7 +124,7 @@ type Ctx = {
 const ScorpionDataCtx = createContext<Ctx | null>(null);
 
 const KEYS = {
-  team: "scorpion.team.v2_pubgid",
+  team: "scorpion.team.v3_realids",
   events: "scorpion.events.v1",
   media: "scorpion.media.v1",
   sponsors: "scorpion.sponsors.v1",
