@@ -11,6 +11,8 @@ export type TeamMember = {
   tier: TeamTier;
   badge?: string;
   avatar?: string;
+  pubgId?: string;
+
 };
 
 export type EventStatus = "Hamarosan" | "Jelentkezés nyitva" | "Élő" | "Lezárult";
