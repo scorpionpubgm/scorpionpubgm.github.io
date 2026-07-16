@@ -4,6 +4,7 @@ import { useScorpionData } from "./data/ScorpionDataContext";
 
 type FormState = {
   playerName: string;
+  pubgId: string;
   age: string;
   activity: string;
   rank: string;
@@ -15,6 +16,7 @@ type FormState = {
 
 const initial: FormState = {
   playerName: "",
+  pubgId: "",
   age: "",
   activity: "",
   rank: "",
